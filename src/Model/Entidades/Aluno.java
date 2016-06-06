@@ -16,7 +16,16 @@ public class Aluno extends Entidade{
     private Status          status;
     private List<Contrato>  contratos;
     private List<Relatorio> relatorios;
-    private String      telefone;
+    private String          telefone;
+    private boolean         portadorDeficiencia;
+
+    public boolean isPortadorDeficiencia() {
+        return portadorDeficiencia;
+    }
+
+    public void setPortadorDeficiencia(boolean portadorDeficiencia) {
+        this.portadorDeficiencia = portadorDeficiencia;
+    }
 
     public String getTelefone() {
         return telefone;
