@@ -16,11 +16,20 @@ public class Contrato extends Entidade{
     private int     cargaHoraria;
     private double  remuneracao;
     private Status  status;
+    private Status  faseDoEstagio;
     private Tipos   tipo;
     private Date    dataInicial;
     private Date    dataFinal;
     private Date    dataEnvioAvaliacao;
     private Date    dataEntregaParaAluno;
+
+    public Status getFaseDoEstagio() {
+        return faseDoEstagio;
+    }
+
+    public void setFaseDoEstagio(Status faseDoEstagio) {
+        this.faseDoEstagio = faseDoEstagio;
+    }
 
     public Aluno getAluno() {
         return aluno;
