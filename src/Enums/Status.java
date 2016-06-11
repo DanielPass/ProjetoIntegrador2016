@@ -14,7 +14,7 @@ public enum Status {
     INATIVO,
 
     /**
-     * Status do estágio
+     * Status do processo
      */
     EM_ANDAMENTO,
     INTERROMPIDO,
