@@ -34,6 +34,15 @@ public class GUI_Aluno {
     private Button salvar;
     private Button excluir;
     private Button limpar;
+    private int idAluno;
+
+    public int getIdAluno() {
+        return idAluno;
+    }
+
+    public void setIdAluno(int idAluno) {
+        this.idAluno = idAluno;
+    }
 
     public GUI_Aluno(Stage stage){
         this.stage = stage;
@@ -123,7 +132,7 @@ public class GUI_Aluno {
 
         Label lblCod = new Label("Cód. Curso");
         tfCodCurso = new TextField();
-        tfCodCurso.setPrefWidth(30);
+        tfCodCurso.setPrefWidth(40);
 
         Label lblCurso = new Label("Curso");
         tfCurso = new TextField();
@@ -227,6 +236,7 @@ public class GUI_Aluno {
         excluir = new Button("Excluir");
         limpar = new Button("Limpar");
 
+        excluir.setDisable(true);
         VBox buttons = new VBox(10);
         buttons.setPadding(new Insets(5, 5, 5, 5));
         buttons.getChildren().addAll(salvar, limpar, excluir);

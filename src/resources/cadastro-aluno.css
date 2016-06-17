@@ -16,6 +16,7 @@
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
     -fx-pref-width: 90px;
+    -fx-cursor: hand;
 }
 
 .table-view {

@@ -2,11 +2,11 @@ package Persistencia;
 
 import Enums.Status;
 import Model.Entidades.Aluno;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AlunoDAO extends EntidadeDAO<Aluno> {
 
@@ -88,7 +88,7 @@ public class AlunoDAO extends EntidadeDAO<Aluno> {
             String sql = "UPDATE projeto_integrador.aluno SET deletado=? WHERE matricula=?";
              
             stmt = con.prepareStatement(sql);
-            stmt.setBoolean(1, aluno.isDeletado());
+            stmt.setBoolean(1, true);
             stmt.setString(2, aluno.getMatricula());
             stmt.executeUpdate();
 
@@ -102,16 +102,16 @@ public class AlunoDAO extends EntidadeDAO<Aluno> {
     }
         
     @Override
-    public List<Aluno> consultar() {
+    public ObservableList<Aluno> consultar() {
 
-        List<Aluno> alunos = new ArrayList<>();
+        ObservableList<Aluno> alunos = FXCollections.observableArrayList();
         
         ResultSet res = null;
 
         try {
 
             stm = con.createStatement();
-            res = stm.executeQuery("SELECT * FROM projeto_integrador.aluno");
+            res = stm.executeQuery("SELECT * FROM projeto_integrador.aluno WHERE deletado = FALSE");
 
             while (res.next()){
                 Aluno aluno = new Aluno();
@@ -122,6 +122,7 @@ public class AlunoDAO extends EntidadeDAO<Aluno> {
                 aluno.setTelefone(res.getString("telefone"));
                 aluno.setStatus(Status.valueOf(res.getString("situacao")));
                 aluno.setPeriodo(res.getInt("periodo"));
+                aluno.setPortadorDeficiencia(res.getBoolean("portador_deficiencia"));
 
                 CursoDAO cursoDAO = new CursoDAO();
                 aluno.setCurso(cursoDAO.consultar(res.getInt("id_curso")));

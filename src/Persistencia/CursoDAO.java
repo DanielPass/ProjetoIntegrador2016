@@ -43,7 +43,7 @@ public class CursoDAO extends EntidadeDAO<Curso> {
 
         try {
 
-            String sql = "SELECT * FROM curso WHERE codigo_curso="+id;
+            String sql = "SELECT * FROM projeto_integrador.curso WHERE codigo_curso="+id;
             stm = con.createStatement();
             res = stm.executeQuery(sql);
 
