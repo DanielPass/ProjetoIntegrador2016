@@ -37,6 +37,11 @@ public class AlunoDAO extends EntidadeDAO<Aluno> {
             con.close();
 
         } catch (SQLException e) {
+            try {
+                con.close();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
             System.out.println("Erro no cadastro: " + e.getMessage());
             return false;
         }

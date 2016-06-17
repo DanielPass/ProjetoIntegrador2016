@@ -43,18 +43,25 @@ public class CursoDAO extends EntidadeDAO<Curso> {
 
         try {
 
-            String sql = "SELECT * FROM projeto_integrador.curso WHERE codigo_curso="+id;
+            String sql = "SELECT * FROM curso WHERE codigo_curso="+id;
             stm = con.createStatement();
             res = stm.executeQuery(sql);
 
-            curso.setId(res.getInt("codigo_curso"));
-            curso.setNome(res.getString("nome"));
-            curso.setQuantidadePeriodos(res.getInt("periodos"));
-            curso.setNomeCoordenador(res.getString("coordenador"));
+            if(res.next()) {
+                curso.setId(res.getInt("codigo_curso"));
+                curso.setNome(res.getString("nome"));
+                curso.setQuantidadePeriodos(res.getInt("periodos"));
+                curso.setNomeCoordenador(res.getString("coordenador"));
+            }
 
             con.close();
 
         } catch (SQLException e) {
+            try {
+                con.close();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
             System.out.println("Erro na consulta:" + e.getMessage());
         }
 

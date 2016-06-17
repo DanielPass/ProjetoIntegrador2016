@@ -1,6 +1,9 @@
 package View;
 
 import Enums.Status;
+import Model.Entidades.Aluno;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -27,7 +30,7 @@ public class GUI_Aluno {
     private ToggleGroup    tgDeficiencia;
     private ComboBox<String> cbPeriodo;
     private ComboBox<Status> cbStatus;
-    private TableView<String> tvAlunos;
+    private TableView<Aluno> tvAlunos;
     private Button salvar;
     private Button excluir;
     private Button limpar;
@@ -77,7 +80,7 @@ public class GUI_Aluno {
         return cbStatus;
     }
 
-    public TableView<String> getTvAlunos() {
+    public TableView<Aluno> getTvAlunos() {
         return tvAlunos;
     }
 
@@ -173,14 +176,40 @@ public class GUI_Aluno {
     }
 
     private void criarTabela() {
-        TableColumn<String, String> cNome = new TableColumn<>("Nome");
-        TableColumn<String, String> cMatricula = new TableColumn<>("Matrícula");
-        TableColumn<String, String> cEmail = new TableColumn<>("E-mail");
-        TableColumn<String, String> cCurso = new TableColumn<>("Curso");
-        TableColumn<String, String> cPeriodo = new TableColumn<>("Período");
-        TableColumn<String, String> cStatus = new TableColumn<>("Situação");
-        TableColumn<String, String> cTelefone = new TableColumn<>("Telefone");
-        TableColumn<String, CheckBox> cDeficiente = new TableColumn<>("Deficiente");
+        TableColumn<Aluno, String> cNome = new TableColumn<>("Nome");
+        cNome.setCellValueFactory( c ->
+                new SimpleStringProperty(c.getValue().getNome()));
+
+        TableColumn<Aluno, String> cMatricula = new TableColumn<>("Matrícula");
+        cMatricula.setCellValueFactory( c ->
+                new SimpleStringProperty(c.getValue().getMatricula()));
+
+        TableColumn<Aluno, String> cEmail = new TableColumn<>("E-mail");
+        cEmail.setCellValueFactory( c->
+                new SimpleStringProperty(c.getValue().getEmail()));
+
+        TableColumn<Aluno, String> cCurso = new TableColumn<>("Curso");
+        cCurso.setCellValueFactory( c ->
+                new SimpleStringProperty(c.getValue().getCurso().getNome()));
+
+        TableColumn<Aluno, String> cPeriodo = new TableColumn<>("Período");
+        cPeriodo.setCellValueFactory( c ->
+                new SimpleStringProperty(String.valueOf(c.getValue().getPeriodo())));
+
+        TableColumn<Aluno, String> cStatus = new TableColumn<>("Situação");
+        cStatus.setCellValueFactory(cellFactory ->
+                new SimpleStringProperty(cellFactory.getValue().getStatus().toString()));
+
+        TableColumn<Aluno, String> cTelefone = new TableColumn<>("Telefone");
+        cTelefone.setCellValueFactory(c ->
+                new SimpleStringProperty(c.getValue().getTelefone()));
+        TableColumn<Aluno, CheckBox> cDeficiente = new TableColumn<>("Deficiente");
+        cDeficiente.setCellValueFactory( c -> {
+            CheckBox checkBox = new CheckBox();
+            checkBox.setSelected(c.getValue().isPortadorDeficiencia());
+            checkBox.setDisable(true);
+            return new SimpleObjectProperty<CheckBox>(checkBox);
+        });
 
         cNome.setMinWidth(200);
         cCurso.setMinWidth(200);
