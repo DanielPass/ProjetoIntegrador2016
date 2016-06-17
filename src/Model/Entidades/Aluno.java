@@ -10,7 +10,7 @@ import java.util.List;
 public class Aluno extends Entidade{
 
     private String          matricula;
-    private Curso          curso;
+    private Curso           curso;
     private int             periodo;
     private String          email;
     private Status          status;
