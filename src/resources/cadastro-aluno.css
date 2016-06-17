@@ -1,0 +1,23 @@
+.vb-form {
+    -fx-border-color: transparent #c3c3c3 transparent transparent;
+    -fx-border-style: solid;
+}
+ .label {
+     -fx-text-fill: gray;
+     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+     -fx-font-weight: bold;
+     -fx-alignment: center-left;
+ }
+
+.button {
+    -fx-padding: 5 22 5 22;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-pref-width: 90px;
+}
+
+.table-view {
+    -fx-text-alignment: left;
+}

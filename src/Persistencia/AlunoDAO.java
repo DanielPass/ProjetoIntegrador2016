@@ -49,7 +49,7 @@ public class AlunoDAO extends EntidadeDAO<Aluno> {
 
         try {
             String sql = "UPDATE projeto_integrador.aluno SET " +
-                    "id_curso=?, nome=?, matricula=?, email=?, telefone=?, periodo=?, situacao=?, portador_deficiencia=? WHERE id_aluno=?";
+                    "id_curso=?, nome=?, matricula=?, email=?, telefone=?, periodo=?, situacao=?, portador_deficiencia=? WHERE matricula=?";
             
             stmt = con.prepareStatement(sql);
 
@@ -62,7 +62,7 @@ public class AlunoDAO extends EntidadeDAO<Aluno> {
             stmt.setInt(6, aluno.getPeriodo());
             stmt.setString(7, aluno.getStatus().name());
             stmt.setBoolean(8, aluno.isPortadorDeficiencia());
-            stmt.setInt(9, aluno.getId());
+            stmt.setString(9, aluno.getMatricula());
 
             stmt.executeUpdate();
 
@@ -80,11 +80,11 @@ public class AlunoDAO extends EntidadeDAO<Aluno> {
 
         try {
 
-            String sql = "UPDATE projeto_integrador.aluno SET deletado=? WHERE id_aluno=?";
+            String sql = "UPDATE projeto_integrador.aluno SET deletado=? WHERE matricula=?";
              
             stmt = con.prepareStatement(sql);
             stmt.setBoolean(1, aluno.isDeletado());
-            stmt.setInt(2, aluno.getId());
+            stmt.setString(2, aluno.getMatricula());
             stmt.executeUpdate();
 
             con.close();
